@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="left_leg">
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00056817 -0.0027454 -0.14068"
+        rpy="0 0 0" />
+      <mass
+        value="1.6792" />
+      <inertia
+        ixx="0.013583"
+        ixy="-5.0622E-08"
+        ixz="-0.00013542"
+        iyy="0.014078"
+        iyz="-0.00011671"
+        izz="0.00085269" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/l_knee.obj" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.68627 0.65882 0.63922 1" />
+      </material>
+    </visual>
+  </link>
+  <link name="ankle">
+    <inertial>
+      <origin
+        xyz="-1.3719E-07 -1.3719E-07 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.042517" />
+      <inertia
+        ixx="4.0903E-06"
+        ixy="8.0023E-16"
+        ixz="1.4167E-10"
+        iyy="4.0903E-06"
+        iyz="-1.4387E-10"
+        izz="7.1956E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/l_foot_pitch.obj" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.6902 0.65882 0.63922 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="foot-y" type="revolute">
+    <origin
+      xyz="0 -0.0022 -0.346"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="ankle" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.50"
+      upper="1.50"
+      effort="74"
+      velocity="47" />
+  </joint>
+  <link name="foot">
+    <inertial>
+      <origin
+        xyz="-0.01048 -9.0844E-07 -0.031378"
+        rpy="0 0 0" />
+      <mass
+        value="0.59706" />
+      <inertia
+        ixx="0.00024622"
+        ixy="3.3623E-08"
+        ixz="1.2464E-05"
+        iyy="0.00082217"
+        iyz="1.5915E-09"
+        izz="0.00099703" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/l_foot_roll.obj" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.6902 0.65882 0.63922 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="foot-x" type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="ankle" />
+    <child
+      link="foot" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+    />
+  </joint>
+  <link name="l_rocker_arm">
+    <inertial>
+      <origin
+        xyz="-0.017639 -0.0012332 0.0047224"
+        rpy="0 0 0" />
+      <mass
+        value="0.041379" />
+      <inertia
+        ixx="6.3487E-06"
+        ixy="-2.7168E-06"
+        ixz="4.9324E-06"
+        iyy="2.8379E-05"
+        iyz="7.2737E-07"
+        izz="2.3451E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/l_l_bar.obj" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.6902 0.65882 0.63922 1" />
+      </material>
+    </visual>
+  </link>
+  <frame link="l_rocker_arm" name="f-l_rocker_arm" xyz="0 -0.0085 0" /> <!-- add frame -->
+  <joint name="j-l_rocker_arm" type="revolute">
+    <origin
+      xyz="0 0.0318 -0.09"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="l_rocker_arm" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14" />
+    <!-- <limit
+      lower="-1.58"
+      upper="0.58"
+      effort="74"
+      velocity="47" /> -->
+  </joint>
+  <transmission type="SimpleTransmission">
+    <joint name="j-l_rocker_arm" />
+    <actuator name="a-l_rocker_arm">
+      <drake:gear_ratio value="9.0" />
+      <drake:rotor_inertia value="0.0001002" />
+    </actuator>
+  </transmission>
+  <link name="l_link">
+    <inertial>
+      <origin
+        xyz="-1.3642E-05 -0.00048331 -0.13953"
+        rpy="0 0 0" />
+      <mass
+        value="0.13223" />
+      <inertia
+        ixx="0.00049161"
+        ixy="3.0645E-12"
+        ixz="1.52E-08"
+        iyy="0.00048973"
+        iyz="-2.4263E-07"
+        izz="4.775E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/l_l_tendon.obj" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.6902 0.65882 0.63922 1" />
+      </material>
+    </visual>
+  </link>
+  <drake:joint name="j-l_link" type="universal">
+    <origin
+      xyz="-0.056027 -0.0085 0.015"
+      rpy="0 0 0" />
+    <parent
+      link="l_rocker_arm" />
+    <child
+      link="l_link" />
+  </drake:joint>
+
+  <link name="r_rocker_arm">
+    <inertial>
+      <origin
+        xyz="-0.017639 0.0012332 0.0047224"
+        rpy="0 0 0" />
+      <mass
+        value="0.041379" />
+      <inertia
+        ixx="6.3486E-06"
+        ixy="2.7168E-06"
+        ixz="4.9323E-06"
+        iyy="2.8379E-05"
+        iyz="-7.2736E-07"
+        izz="2.3451E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/l_r_bar.obj" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.6902 0.65882 0.63922 1" />
+      </material>
+    </visual>
+  </link>
+  <frame link="r_rocker_arm" name="f-r_rocker_arm" xyz="0 0.0085 0" /> <!-- add frame-->
+  <joint name="j-r_rocker_arm" type="revolute">
+    <origin
+      xyz="0 -0.0362 -0.153"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="r_rocker_arm" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14" />
+    <!-- <limit
+      lower="-1.58"
+      upper="0.58"
+      effort="74"
+      velocity="47" /> -->
+  </joint>
+  <!-- add transmission -->
+  <transmission type="SimpleTransmission">
+    <joint name="j-r_rocker_arm" />
+    <actuator name="a-r_rocker_arm">
+      <drake:gear_ratio value="9.0" />
+      <drake:rotor_inertia value="0.0001002" />
+    </actuator>
+  </transmission>
+  <link name="r_link">
+    <inertial>
+      <origin
+        xyz="-1.9777E-05 0.00047927 -0.10625"
+        rpy="0 0 0" />
+      <mass
+        value="0.10643" />
+      <inertia
+        ixx="0.0001972"
+        ixy="4.1988E-12"
+        ixz="-1.2811E-08"
+        iyy="0.00019587"
+        iyz="1.7341E-07"
+        izz="3.9152E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/l_r_tendon.obj" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.6902 0.65882 0.63922 1" />
+      </material>
+    </visual>
+  </link>
+  <!-- drake joint shrot right link (same as the j-l_link in right leg) -->
+  <drake:joint name="j-r_link" type="universal">
+    <origin
+      xyz="-0.056027 0.0085 0.015"
+      rpy="0 0 0" />
+    <parent
+      link="r_rocker_arm" />
+    <child
+      link="r_link" />
+  </drake:joint>
+  <!-- add frame-->
+  <frame link="l_link" name="l_link-foot" xyz="0 0 -0.256" />
+  <frame link="foot" name="foot-l_link" xyz="-0.0560267793113257 0.0255 0.015" />
+  <!-- add drake linear_bushing_rpy -->
+  <drake:linear_bushing_rpy>
+    <drake:bushing_frameC name="l_link-foot" />
+    <drake:bushing_frameA name="foot-l_link" />
+    <!-- <drake:bushing_force_stiffness value="1000 1000 100000"/>
+    <drake:bushing_force_damping value="10 10 200"/> -->
+    <drake:bushing_force_stiffness value="0 0 0" />
+    <drake:bushing_force_damping value="0 0 0" />
+    <drake:bushing_torque_stiffness value="0 0 0" />
+    <drake:bushing_torque_damping value="0 0 0" />
+  </drake:linear_bushing_rpy>
+  <frame link="r_link" name="r_link-foot" xyz="0 0 -0.193" />
+  <frame link="foot" name="foot-r_link" xyz="-0.0560267793113257 -0.0254999999999999 0.015" />
+  <drake:linear_bushing_rpy>
+    <drake:bushing_frameA name="r_link-foot" />
+    <drake:bushing_frameC name="foot-r_link" />
+    <!-- <drake:bushing_force_stiffness value="1000 1000 100000"/>
+    <drake:bushing_force_damping value="10 10 200"/> -->
+    <drake:bushing_force_stiffness value="0 0 0" />
+    <drake:bushing_force_damping value="0 0 0" />
+    <drake:bushing_torque_stiffness value="0 0 0" />
+    <drake:bushing_torque_damping value="0 0 0" />
+  </drake:linear_bushing_rpy>
+</robot>

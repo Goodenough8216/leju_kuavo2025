@@ -1,0 +1,28 @@
+<package format="2">
+  <name>grab_box</name>
+  <version>0.1.0</version>
+  <description>
+    Grab Box Demo Package.
+  </description>
+  <maintainer email="matthew_zt@163.com">null</maintainer>
+  <author>null</author>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>behaviortree_cpp_v3</depend>
+
+  <!--system depend-->
+  <depend>boost</depend>
+  <depend>ocs2_ros_interfaces</depend>
+  <depend>ocs2_core</depend>
+  <depend>ocs2_msgs</depend>
+  <depend>kuavo_msgs</depend>
+  <depend>ocs2_robotic_tools</depend>
+  <depend>motion_capture_ik</depend>
+  <depend>sensor_msgs</depend>
+  <depend>humanoid_interface</depend>
+  <depend>humanoid_interface_ros</depend>
+  <depend>mobile_manipulator_controllers</depend>
+</package>

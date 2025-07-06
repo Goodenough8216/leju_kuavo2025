@@ -1,0 +1,15 @@
+#pragma once
+
+#include <cstddef>
+#include <string>
+#include <cstdlib>
+#include <cassert>
+
+namespace mobile_manipulator_controller
+{
+  /** Gets the path to the package source directory. */
+  inline std::string getPath() {
+    std::string path = "@PROJECT_SOURCE_DIR@";
+    return path;
+  }
+} // namespace GrabBox

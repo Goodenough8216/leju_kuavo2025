@@ -1,0 +1,28 @@
+<launch>
+    <!-- 定义命令行参数 -->
+    <arg name="send_srv" default="0"/> <!-- 0: 不需要手动打开手臂控制，1: 需要手动打开手臂控制 -->
+    <arg name="version" default="4" />
+    <arg name="ctrl_arm_idx" default="2" />
+    <arg name="ik_type_idx" default="0" />
+    <arg name="ip_address" default="" />
+    <arg name="has_camera" default="0" />
+    <arg name="video_device" default="/dev/video0" />
+    <arg name="camera_publisher_name" default="/camera_publisher" />
+
+    <!-- motion_capture_ik -->
+    <node pkg="motion_capture_ik" type="ik_ros_uni.py" name="ik_ros_uni" args=" --version $(arg version) --ctrl_arm_idx $(arg ctrl_arm_idx) --ik_type_idx $(arg ik_type_idx) --send_srv=$(arg send_srv)" output="screen">
+    </node>
+
+    <!-- noitom_hi5_hand_udp_python -->
+    <node pkg="noitom_hi5_hand_udp_python" type="monitor_quest3.py" args="$(arg ip_address)" name="monitor_quest3" output="screen">
+    </node>
+    <group if="$(arg has_camera)">
+        <node name="camera_publisher" pkg="usb_cam" type="usb_cam_node" output="screen">
+            <param name="video_device" value="$(arg video_device)"/>
+            <param name="image_width" value="2560"/>
+            <param name="image_height" value="720"/>
+            <param name="image_transport" value="raw"/>
+        </node>
+    </group>
+    <node pkg="noitom_hi5_hand_udp_python" type="webrtc_videostream.py" name="webrtc_videostream" args="$(arg camera_publisher_name)" output="screen"/>
+</launch>

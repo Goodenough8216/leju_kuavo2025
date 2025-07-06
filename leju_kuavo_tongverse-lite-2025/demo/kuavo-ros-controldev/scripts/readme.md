@@ -1,0 +1,4 @@
+- `bashconfig.sh` bash终端的一些方便配置，自动补全、历史记录共享、历史记录搜索、一些方便的alias，比如快速执行硬件check脚本`checkhw`
+- `config_ccache.sh` 配置ccache，增加编译缓存，可以加速多次编译同样的cpp文件的过程
+- `setup_vnc.sh` 配置gnome桌面环境的vnc, 支持rviz、plotjuggler等图形程序
+- `install_env_in_kuavoimg.sh` 在旧的kuavo镜像上安装kuavo-ros-control仓库相关依赖

@@ -1,0 +1,2 @@
+libusb-1.0-0:amd64=2:1.0.23-2build1
+libusb-1.0-0-dev:amd64=2:1.0.23-2build1

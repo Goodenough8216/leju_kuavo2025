@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+__pycache__/
+.catkin_tools/
+build/*
+devel/*
+logs/*
+.catkin_tools/
+./src/CMakeLists.txt
+.ccache
+ecmaster*.log
+ecmaster*.csv
+
+node_modules/
+.docusaurus/
+new-docs
+.aider*

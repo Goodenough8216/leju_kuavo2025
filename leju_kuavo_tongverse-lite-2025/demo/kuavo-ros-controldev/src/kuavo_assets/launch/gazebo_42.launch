@@ -1,0 +1,29 @@
+<launch>
+  <!-- Start Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find gazebo_ros)/worlds/empty.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+
+  <!-- Load URDF file -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find kuavo_assets)/models/biped_s42/urdf/biped_s42_gazebo.urdf"/>
+
+  <!-- Spawn URDF model into Gazebo -->
+  <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -model biped_s42 -param robot_description -x 0 -y 0 -z 1.0"/>
+
+  <!-- Optionally, start robot state publisher to publish TF -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+
+  <!-- Load controller configuration -->
+  <rosparam file="$(find kuavo_assets)/models/biped_s42/config/effort_controllers.yaml"/>
+
+  <!-- Start controller manager -->
+  <node name="controller_manager" pkg="controller_manager" type="controller_manager" />
+
+  <!-- Load and start your controller -->
+  <node name="limbs_effort_controller" pkg="controller_manager" type="spawner" args="limbs_effort_controller"/>
+  <node name="joint_state_controller" pkg="controller_manager" type="spawner" args="joint_state_controller"/>
+
+</launch>

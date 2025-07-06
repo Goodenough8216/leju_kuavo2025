@@ -1,0 +1,16 @@
+[Unit]
+Description=H12PRO Remote Controller Channel Publisher
+After=network.target roscore.service 
+Requires=roscore.service
+
+[Service]
+Type=simple
+ExecStart=/home/lab/kuavo_ros1_workspace/src/h12pro_controller_node/scripts/start_h12pro_channel_pub.sh
+ExecStop=/bin/kill -SIGINT $MAINPID
+Restart=on-failure
+RestartSec=3s
+User=root
+
+[Install]
+WantedBy=multi-user.target
+

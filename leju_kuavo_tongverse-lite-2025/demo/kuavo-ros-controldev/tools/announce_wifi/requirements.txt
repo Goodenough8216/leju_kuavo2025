@@ -1,0 +1,12 @@
+wheel
+pygame
+addict
+oss2
+scipy==1.10.0
+datasets==2.16.0
+Pillow
+simplejson
+sortedcontainers
+matplotlib
+pytorch_wavelets
+tensorboardX

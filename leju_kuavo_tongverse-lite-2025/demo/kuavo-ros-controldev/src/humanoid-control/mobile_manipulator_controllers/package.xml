@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>mobile_manipulator_controllers</name>
+    <version>0.0.0</version>
+    <description>The mobile_manipulator_controllers packages.</description>
+    <maintainer email="todo@todo.com">todo</maintainer>
+    <license>BSD</license>
+    <author email="todo@todo.com">todo</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>nodelet</build_depend>
+
+    <build_depend>cmake_clang_tools</build_depend>
+    <depend>roscpp</depend>
+    <depend>humanoid_common</depend>
+    <depend>humanoid_interface</depend>
+    <depend>humanoid_interface_ros</depend>
+    <depend>kuavo_msgs</depend>
+    <depend>kuavo_assets</depend>
+    <depend>ocs2_mobile_manipulator</depend>
+    <depend>ocs2_mobile_manipulator_ros</depend>
+    <depend>motion_capture_ik</depend>
+</package>

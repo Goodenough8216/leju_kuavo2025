@@ -1,0 +1,1 @@
+humanoid_plan_arm_trajectory/bezierCurveCubicPoint[] bezier_curve_points

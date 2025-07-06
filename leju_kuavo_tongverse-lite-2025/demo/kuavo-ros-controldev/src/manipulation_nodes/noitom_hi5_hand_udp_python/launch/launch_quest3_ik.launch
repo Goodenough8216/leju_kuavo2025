@@ -1,0 +1,19 @@
+<launch>
+    <!-- 定义命令行参数 -->
+    <arg name="version" default="4" />
+    <arg name="ctrl_arm_idx" default="2" />
+    <arg name="ik_type_idx" default="0" />
+    <arg name="ip_address" default="" />
+    <arg name="control_torso" default="0" /> <!-- 0: do NOT control, 1: control torso  -->
+    <arg name="control_finger_type" default="0" /> <!-- 0: control all fingers by upper-gripper, 1: control thumb and index fingers by upper-gripper, control other fingers by lower-gripper  -->
+    <arg name="predict_gesture" default="false" /> <!-- True or False -->
+    <arg name="ee_type" default="qiangnao"/>
+
+    <!-- motion_capture_ik -->
+    <node pkg="motion_capture_ik" type="ik_ros_uni.py" name="ik_ros_uni" args=" --version $(arg version) --ctrl_arm_idx $(arg ctrl_arm_idx) --ik_type_idx $(arg ik_type_idx) --control_torso=$(arg control_torso) --control_finger_type=$(arg control_finger_type) --predict_gesture=$(arg predict_gesture) --ee_type=$(arg ee_type)" output="screen">
+    </node>
+
+    <!-- noitom_hi5_hand_udp_python -->
+    <node pkg="noitom_hi5_hand_udp_python" type="monitor_quest3.py" args="$(arg ip_address)" name="monitor_quest3" output="screen">
+    </node>
+</launch>

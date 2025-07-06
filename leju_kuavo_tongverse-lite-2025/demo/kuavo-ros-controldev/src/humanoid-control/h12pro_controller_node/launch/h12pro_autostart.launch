@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<launch>
+    <env name="PYTHONPATH" value="$(find h12pro_controller_node):$(env PYTHONPATH)"/>
+    <param name="start_way"  value="auto"/>
+    <param name="real_robot" value="true"/>
+    <node pkg="h12pro_controller_node" type="h12pro_channel_publisher" name="h12pro_channel_publisher" output="screen"/>
+
+    <node pkg="h12pro_controller_node" type="ocs2_h12pro_node.py" name="joy_node" output="screen"/>
+
+    <include file="$(find humanoid_plan_arm_trajectory)/launch/humanoid_plan_arm_trajectory.launch"/>
+</launch>

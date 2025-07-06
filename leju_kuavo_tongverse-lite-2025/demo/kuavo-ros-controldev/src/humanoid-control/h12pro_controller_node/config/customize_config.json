@@ -1,0 +1,41 @@
+{
+  "customize_action_RR_A": {
+    "arm_pose_name": ["打招呼"],
+    "music_name": ["welcome.wav"]
+  },
+  
+  "customize_action_RR_B": {
+    "arm_pose_name": ["飞起来了"],
+    "music_name": ["Goodbye.wav"]
+  },
+
+  "customize_action_RR_C": {
+    "arm_pose_name": ["双手摊开斜45度"],
+    "music_name": ["Sorry.wav"]
+  },
+
+  "customize_action_RR_D": {
+    "arm_pose_name": ["右手高举"],
+    "music_name": ["Let_me_check_it_for_you.wav"]
+  },
+
+  "customize_action_LL_A": {
+    "arm_pose_name": ["start_marching"],
+    "music_name": ["let_me_run_with_you.wav"]
+  },
+
+  "customize_action_LL_B": {
+    "arm_pose_name": ["end_marching"],
+    "music_name": [""]
+  },
+
+  "customize_action_LL_C": {
+    "arm_pose_name": ["左手邀请"],
+    "music_name": ["Let_me_check_it_for_you.wav"]
+  },
+
+  "customize_action_LL_D": {
+    "arm_pose_name": ["左手向上肘弯曲"],
+    "music_name": ["Are_you_feeling_better_now.wav"]
+  }
+}

@@ -1,0 +1,42 @@
+before_script:
+  - export SYNC_REPO_URL="ssh://git@www.lejuhub.com:10026/highlydynamic/motion_capture_ik_packaged.git"
+  - export SYNC_REPO_NAME="motion_capture_ik_packaged"
+  - export CI_PATH=/tmp/ik_ci
+stages:
+  - sync
+
+pull_repo:
+  stage: sync
+  script:
+    - mkdir -p $CI_PATH
+    - cd $CI_PATH
+    - git clone $SYNC_REPO_URL || echo "Repo already exists"
+    - cd $SYNC_REPO_NAME
+    - git fetch --all
+    - git clean -dfx && git checkout . 
+    
+    - git reset --hard origin/$CI_COMMIT_BRANCH
+    - git clean -df
+  only:
+    - master
+    - develop
+    - dev
+    - matthew/feature/cxx_version
+    - /^opensource\/.*$/
+
+sync:
+  stage: sync
+  script:
+    - cd scripts/ik
+    - python3 -m compileall -b . && find . -name "*.py" -type f -delete
+    - cd $CI_PROJECT_DIR
+    - rsync -av --exclude='.git' --exclude='.gitlab-ci.yml' --exclude='.gitignore' . $CI_PATH/$SYNC_REPO_NAME
+    - cd $CI_PATH/$SYNC_REPO_NAME
+    - ls -la src/
+    - rm src/plantIK.cc
+    - ls -la src/
+    - git add .
+    - git commit -m "Sync $PROJECT_VERSION_VAR from $CI_PROJECT_NAME"
+    - git push origin HEAD:$CI_COMMIT_BRANCH -f
+  dependencies:
+    - pull_repo

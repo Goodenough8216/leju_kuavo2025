@@ -1,0 +1,6 @@
+int32 control_mode # 0: keep pose, 1: auto_swing_arm, 2: external_control 
+---
+bool result
+int32 mode 
+string message
+

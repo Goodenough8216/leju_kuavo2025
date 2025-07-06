@@ -1,0 +1,7 @@
+<library path="libhumanoid_plan_arm_trajectory_nodelet">
+  <class name="humanoid_plan_arm_trajectory/HumanoidPlanArmTrajectoryNodelet" type="ocs2::humanoid::HumanoidPlanArmTrajectoryNodelet" base_class_type="nodelet::Nodelet">
+    <description>
+      Humanoid Plan Arm Trajectory nodelet
+    </description>
+  </class>
+</library>

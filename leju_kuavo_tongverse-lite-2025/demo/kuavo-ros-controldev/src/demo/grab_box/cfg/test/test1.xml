@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="3"
+      main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <SayHello/>
+      <Square square_output="{data}"
+              square_input="2"/>
+      <Square square_output="{data2}"
+              square_input="{data}"/>
+      <Fallback>
+        <ForceFailure>
+          <Square square_output="{data3}"
+                  square_input="{data2}"/>
+        </ForceFailure>
+        <Inverter>
+          <Square square_output="{data4}"
+                  square_input="{data3}"/>
+        </Inverter>
+        <CheckValue value_input="{data4}"/>
+        <Echo echo_input="{data4}"/>
+      </Fallback>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Condition ID="CheckValue"
+               editable="true">
+      <input_port name="value_input"/>
+    </Condition>
+    <Action ID="Echo"
+            editable="true">
+      <input_port name="echo_input"/>
+    </Action>
+    <Action ID="SayHello"/>
+    <Action ID="Square"
+            editable="true">
+      <output_port name="square_output"/>
+      <input_port name="square_input"/>
+    </Action>
+  </TreeNodesModel>
+
+</root>

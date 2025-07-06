@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="3"
+      main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <ReactiveSequence>
+      <SequenceStar>
+        <SetBlackboard value="-0.3,0,0"
+                       output_key="pre_grab_box_offset"/>
+        <SetBlackboard value="2"
+                       output_key="tag_id"/>
+        <CheckStatusOK/>
+        <SequenceStar>
+          <RetryUntilSuccessful num_attempts="3">
+            <BoxTagOK tag_id="{tag_id}"
+                      box_pos="{box_pose}"
+                      box_quat="{box_quat}"/>
+          </RetryUntilSuccessful>
+          <ComputeTargetPose box_pos="{box_pose}"
+                             box_quat="{box_quat}"
+                             target_box_offset="{pre_grab_box_offset}"
+                             target_pose="{target_pose_pre_grasp}"/>
+          <MakePlan target_pose="{target_pose_pre_grasp}"
+                    planed_trajectory="{planed_trajectory}"/>
+          <MoveToDestination planed_trajectory="{planed_trajectory}"
+                             move_type="0"/>
+          <Sequence>
+            <BoxTagOK tag_id="{tag_id}"
+                      box_pos="{box_pose}"
+                      box_quat="{box_quat}"/>
+            <ComputeTargetPose box_pos="{box_pose}"
+                               box_quat="{box_quat}"
+                               target_box_offset="{pre_grab_box_offset}"
+                               target_pose="{target_pose_pre_grasp}"/>
+            <Fallback>
+              <CloseToDestination pos_error_threshold="0.03"
+                                  yaw_error_threshold="5"
+                                  destination="{target_pose_pre_grasp}"
+                                  pose_delta="{pose_delta}"/>
+              <SingleStepToDestination destination="{pose_delta}"
+                                       step_type="0"/>
+            </Fallback>
+            <RetryUntilSuccessful num_attempts="3">
+              <GraspBox box_pos="{box_pose}"
+                        box_quat="{box_quat}"
+                        box_size="0.3,0.3,0.3"
+                        grasp_type="0"/>
+            </RetryUntilSuccessful>
+          </Sequence>
+        </SequenceStar>
+        <Sequence>
+          <ComputeTargetPose box_pos="{box_pose}"
+                             box_quat="{box_quat}"
+                             target_box_offset="-0.5,0,0"
+                             target_pose="{target_pose_pre_put}"/>
+          <MakePlan target_pose="{target_pose_pre_put}"
+                    planed_trajectory="{planed_trajectory_pre_put}"/>
+          <MoveToDestination planed_trajectory="{planed_trajectory_pre_put}"
+                             move_type="0"/>
+        </Sequence>
+      </SequenceStar>
+    </ReactiveSequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Condition ID="BoxTagOK"
+               editable="true">
+      <input_port name="tag_id"/>
+      <output_port name="box_pos"/>
+      <output_port name="box_quat"/>
+    </Condition>
+    <Condition ID="CheckStatusOK"
+               editable="true"/>
+    <Condition ID="CloseToDestination"
+               editable="true">
+      <input_port name="pos_error_threshold"/>
+      <input_port name="yaw_error_threshold"/>
+      <input_port name="destination"/>
+      <output_port name="pose_delta"/>
+    </Condition>
+    <Condition ID="ComputeTargetPose"
+               editable="true">
+      <input_port name="box_pos"/>
+      <input_port name="box_quat"/>
+      <input_port name="target_box_offset"/>
+      <output_port name="target_pose"/>
+    </Condition>
+    <Action ID="GraspBox"
+            editable="true">
+      <input_port name="box_pos"/>
+      <input_port name="box_quat">xyzw</input_port>
+      <input_port name="box_size"/>
+      <input_port name="grasp_type">0:grasp, 1:put</input_port>
+    </Action>
+    <Action ID="MakePlan"
+            editable="true">
+      <input_port name="target_pose"/>
+      <output_port name="planed_trajectory"/>
+    </Action>
+    <Action ID="MoveToDestination"
+            editable="true">
+      <input_port name="planed_trajectory"/>
+      <input_port name="move_type"
+                  default="0">int</input_port>
+    </Action>
+    <Action ID="SingleStepToDestination"
+            editable="true">
+      <input_port name="destination">x,y,z,yaw</input_port>
+      <input_port name="step_type"
+                  default="0"/>
+    </Action>
+  </TreeNodesModel>
+
+</root>

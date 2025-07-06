@@ -1,0 +1,12 @@
+.vscode/
+requirements.txt
+xx.py
+tests/
+log/
+build
+dist
+docs/html
+docs/*/.doctrees
+mess
+kuavo_humanoid_sdk.egg-info
+kuavo_humanoid_sdk_test.egg-info

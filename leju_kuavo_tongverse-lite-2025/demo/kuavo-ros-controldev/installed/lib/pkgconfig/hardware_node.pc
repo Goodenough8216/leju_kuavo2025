@@ -1,0 +1,8 @@
+prefix=/media/data/gitlab-runner/builds/8rHoW4Dt/0/highlydynamic/kuavo-ros-control/installed
+
+Name: hardware_node
+Description: Description of hardware_node
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lhardware_node
+Requires: roscpp

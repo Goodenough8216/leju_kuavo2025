@@ -1,0 +1,22 @@
+<launch>
+    <arg name="visualize"          default="0"/>
+    <arg name="joystick_type"      default="bt2"/>
+    <arg name="visualize_humanoid" default="true"/>
+    <arg name="visualize_mm"       default="true"/>
+    <arg name="rviz"               default="false"/>
+    <arg name="rviz_mm"            default="true"/>
+    <arg name="sqp_mpc"            default="1"/>
+
+
+
+  <include file="$(find mobile_manipulator_controllers)/launch/mobile_manipulator_controller.launch">
+    <arg name="sqp_mpc"        value="$(arg sqp_mpc)"/>
+    <arg name="rviz"           value="$(arg rviz_mm)"/>
+    <arg name="visualize_mm"   value="$(arg visualize_mm)"/>
+  </include>
+  
+  <node pkg="grab_box" type="tag_tracker_node" name="tag_tracker_node" output="screen"/>
+  <node pkg="handcontrollerdemorosnode" type="box_pose_pub_test.py" name="box_pose_pub_test" output="screen"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="static_transform_publisher_7link_to_eef" args="0.0, -0.030, -0.170 0 0 0 mm/zarm_l7_link mm/zarm_l7_end_effector 100" />
+</launch>

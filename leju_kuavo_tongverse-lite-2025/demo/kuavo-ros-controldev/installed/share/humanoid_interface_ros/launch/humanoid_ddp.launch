@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<launch>
+    <arg name="robot_version"      default="$(optenv ROBOT_VERSION 40)"/>
+    <!-- visualization config -->
+    <arg name="rviz"               default="true" />
+    <arg name="multiplot"          default="false"/>
+    <arg name="use_joystick"       default="true"/>
+    <arg name="joystick_type"      default="bt2"/>
+
+    <!-- The file defining gait definition -->
+    <arg name="gaitCommandFile"   default="$(find humanoid_interface)/config/command/gait.info"/>
+
+    <include file="$(find humanoid_controllers)/launch/robot_version_manager.launch">
+      <arg name="robot_version" value="$(arg robot_version)"/>
+      <arg name="rviz" value="$(arg rviz)"/>
+    </include>
+
+
+    <!-- multiplot -->
+    <group if="$(arg multiplot)">
+      <include file="$(find humanoid_interface_ros)/launch/multiplot.launch"/>
+    </group>
+
+    <!-- make the files into global parameters -->
+    <param name="multiplot"         value="$(arg multiplot)"/>
+    
+    <node pkg="humanoid_interface_ros" type="humanoid_ddp_mpc" name="humanoid_ddp_mpc" output="screen" launch-prefix=""/>
+
+    <node pkg="humanoid_interface_ros" type="humanoid_dummy" name="humanoid_dummy"
+            output="screen" launch-prefix="gnome-terminal --disable-factory --"/>
+
+    <node pkg="humanoid_interface_ros" type="humanoid_target_with_arm" name="humanoid_target_with_arm"
+          output="screen" launch-prefix="gnome-terminal --disable-factory --"/>
+
+    <node pkg="humanoid_interface_ros" type="humanoid_gait_command" name="humanoid_gait_command"
+          output="screen" launch-prefix="gnome-terminal --disable-factory --"/>
+    
+    <node pkg="humanoid_interface_ros" type="humanoid_hand_control" name="humanoid_hand_control" output="screen" launch-prefix=""/>
+    <node pkg="humanoid_interface_ros" type="humanoid_VR_hand_control" name="humanoid_VR_hand_control" output="screen" launch-prefix=""/>
+
+    <group if="$(arg use_joystick)">
+      <group if="$(eval arg('joystick_type') == 'h12')">
+        <include file="$(find humanoid_controllers)/launch/joy/joy_control_h12.launch"/>
+      </group>
+      <group unless="$(eval arg('joystick_type') == 'h12')">
+        <include file="$(find humanoid_controllers)/launch/joy/joy_control_bt.launch">
+          <arg name="joystick_type" value="$(arg joystick_type)"/>
+        </include>
+      </group>
+    </group>
+</launch>

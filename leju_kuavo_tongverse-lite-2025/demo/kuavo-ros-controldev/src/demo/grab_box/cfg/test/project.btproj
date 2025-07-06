@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="3" project_name="Project">
+    <include path="test1.xml"/>
+    <!-- Description of Node Models (used by Groot) -->
+    <TreeNodesModel>
+        <Condition ID="CheckValue" editable="true">
+            <input_port name="value_input"/>
+        </Condition>
+        <Action ID="Echo" editable="true">
+            <input_port name="echo_input"/>
+        </Action>
+        <Action ID="SayHello"/>
+        <Action ID="Square" editable="true">
+            <output_port name="square_output"/>
+            <input_port name="square_input"/>
+        </Action>
+    </TreeNodesModel>
+</root>

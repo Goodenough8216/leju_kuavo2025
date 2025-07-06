@@ -1,0 +1,4 @@
+float64[] left_arm_pose
+float64[] right_arm_pose
+---
+sensor_msgs/JointState joint_state

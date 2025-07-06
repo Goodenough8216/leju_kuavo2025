@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<launch>
+    <arg name="real" default="true" />
+    <arg name="log" default="true" />
+    <arg name="cali" default="false" />
+    <arg name="cali_arm" default="false" />
+    <arg name="cali_leg" default="false" />
+
+  <include file="$(find humanoid_controllers)/launch/load_kuavo_real.launch">
+    <arg name="only_half_up_body" value="true"/>
+    <arg name="real" value="$(arg real)" />
+    <arg name="log" value="$(arg log)" />
+    <arg name="cali" value="$(arg cali)" />
+    <arg name="cali_arm" value="$(arg cali_arm)" />
+    <arg name="cali_leg" value="$(arg cali_leg)" />
+  </include>
+
+  <!-- <include file="$(find humanoid_plan_arm_trajectory)/launch/humanoid_plan_arm_trajectory.launch"/> -->
+
+</launch>   

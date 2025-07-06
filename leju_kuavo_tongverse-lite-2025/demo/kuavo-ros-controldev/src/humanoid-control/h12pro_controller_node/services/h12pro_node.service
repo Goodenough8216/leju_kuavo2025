@@ -1,0 +1,15 @@
+[Unit]
+Description=H12PRO Remote Controller Ros Node
+After=network.target roscore.service 
+Requires=roscore.service 
+
+[Service]
+Type=simple
+ExecStop=/bin/kill -SIGINT $MAINPID
+ExecStart=/home/lab/kuavo_ros1_workspace/src/h12pro_controller_node/scripts/start_h12pro_node.sh
+Restart=on-failure
+RestartSec=3s
+User=root
+
+[Install]
+WantedBy=multi-user.target

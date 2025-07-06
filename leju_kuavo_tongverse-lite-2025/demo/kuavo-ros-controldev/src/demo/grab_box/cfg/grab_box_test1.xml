@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="3"
+      main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <SetBlackboard value="-0.3,0,0"
+                     output_key="pre_grab_box_offset"/>
+      <CheckStatusOK/>
+      <SequenceStar>
+        <SequenceStar>
+          <RetryUntilSuccessful num_attempts="3">
+            <BoxTagOK box_pos="{box_pose}"
+                      box_quat="{box_quat}"/>
+          </RetryUntilSuccessful>
+          <ComputeTargetPose box_pos="{box_pose}"
+                             box_quat="{box_quat}"
+                             target_box_offset="{pre_grab_box_offset}"
+                             target_pose="{target_pose_pre_grasp}"/>
+          <MakePlan target_pose="{target_pose_pre_grasp}"
+                    planed_trajectory="{planed_trajectory}"/>
+          <MoveToDestination planed_trajectory="{planed_trajectory}"
+                             move_type="0"/>
+          <Sequence>
+            <BoxTagOK box_pos="{box_pose}"
+                      box_quat="{box_quat}"/>
+            <ComputeTargetPose box_pos="{box_pose}"
+                               box_quat="{box_quat}"
+                               target_box_offset="{pre_grab_box_offset}"
+                               target_pose="{target_pose_pre_grasp}"/>
+            <Parallel failure_threshold="1"
+                      success_threshold="2">
+              <Fallback>
+                <CloseToDestination pos_error_threshold="0.03"
+                                    yaw_error_threshold="5"
+                                    destination="{target_pose_pre_grasp}"
+                                    pose_delta="{pose_delta}"/>
+                <SingleStepToDestination destination="{pose_delta}"
+                                         step_type="0"/>
+              </Fallback>
+              <Echo echo_input="null"/>
+            </Parallel>
+            <GraspBox box_pos="{box_pose}"
+                      box_quat="{box_quat}"
+                      box_size="0.3,0.3,0.3"
+                      grasp_type="0"/>
+            <MoveToDestination planed_trajectory="0,0,0,0"
+                               move_type="2"/>
+          </Sequence>
+        </SequenceStar>
+        <SequenceStar>
+          <SetBlackboard value="0.2,0.3,0.78,90"
+                         output_key="target_pose2"/>
+          <SingleStepToDestination destination="{target_pose2}"
+                                   step_type="1"/>
+          <MakePlan target_pose="{target_pose2}"
+                    planed_trajectory="{planed_trajectory2}"/>
+          <MoveToDestination planed_trajectory="{planed_trajectory2}"
+                             move_type="1"/>
+          <RetryUntilSuccessful num_attempts="3">
+            <Fallback>
+              <CloseToDestination pos_error_threshold="0.01"
+                                  yaw_error_threshold="3"
+                                  destination="{target_pose2}"
+                                  pose_delta="{pose_delta}"/>
+              <SingleStepToDestination destination="{pose_delta}"
+                                       step_type="0"/>
+            </Fallback>
+          </RetryUntilSuccessful>
+          <GraspBox box_pos="0.2,0.7,0.7"
+                    box_quat="0.0,0,0,1"
+                    box_size="0.3,0.3,0.3"
+                    grasp_type="1"/>
+          <Parallel failure_threshold="1"
+                    success_threshold="2">
+            <MoveToDestination planed_trajectory="0,0,0,0"
+                               move_type="2"/>
+            <ArmMoveToHomePose/>
+          </Parallel>
+        </SequenceStar>
+      </SequenceStar>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="ArmMoveToHomePose"
+            editable="true"/>
+    <Condition ID="BoxTagOK"
+               editable="true">
+      <output_port name="box_pos"/>
+      <output_port name="box_quat"/>
+    </Condition>
+    <Condition ID="CheckStatusOK"
+               editable="true"/>
+    <Condition ID="CloseToDestination"
+               editable="true">
+      <input_port name="pos_error_threshold"/>
+      <input_port name="yaw_error_threshold"/>
+      <input_port name="destination"/>
+      <output_port name="pose_delta"/>
+    </Condition>
+    <Condition ID="ComputeTargetPose"
+               editable="true">
+      <input_port name="box_pos"/>
+      <input_port name="box_quat"/>
+      <input_port name="target_box_offset"/>
+      <output_port name="target_pose"/>
+    </Condition>
+    <Action ID="Echo"
+            editable="true">
+      <input_port name="echo_input"/>
+    </Action>
+    <Action ID="GraspBox"
+            editable="true">
+      <input_port name="box_pos"/>
+      <input_port name="box_quat">xyzw</input_port>
+      <input_port name="box_size"/>
+      <input_port name="grasp_type">0:grasp, 1:put</input_port>
+    </Action>
+    <Action ID="MakePlan"
+            editable="true">
+      <input_port name="target_pose"/>
+      <output_port name="planed_trajectory"/>
+    </Action>
+    <Action ID="MoveToDestination"
+            editable="true">
+      <input_port name="planed_trajectory"/>
+      <input_port name="move_type"
+                  default="0">int</input_port>
+    </Action>
+    <Action ID="SingleStepToDestination"
+            editable="true">
+      <input_port name="destination">x,y,z,yaw</input_port>
+      <input_port name="step_type"
+                  default="0"/>
+    </Action>
+  </TreeNodesModel>
+
+</root>

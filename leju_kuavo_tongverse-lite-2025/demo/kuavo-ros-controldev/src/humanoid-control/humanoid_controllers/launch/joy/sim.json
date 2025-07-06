@@ -1,0 +1,22 @@
+{
+    "JoyButton": {
+        "BUTTON_STANCE": 0,
+        "BUTTON_TROT": 1,
+        "BUTTON_JUMP": 2,
+        "BUTTON_WALK": 3,
+        "BUTTON_LB": 4,
+        "BUTTON_RB": 5,
+        "BUTTON_BACK": 6,
+        "BUTTON_START": 7
+    },
+    "JoyAxis": {
+        "AXIS_LEFT_STICK_Y": 0,
+        "AXIS_LEFT_STICK_X": 1,
+        "AXIS_LEFT_LT": 2,
+        "AXIS_RIGHT_STICK_YAW": 3,
+        "AXIS_RIGHT_STICK_Z": 4,
+        "AXIS_RIGHT_RT": 5,
+        "AXIS_LEFT_RIGHT_TRIGGER": 6,
+        "AXIS_FORWARD_BACK_TRIGGER": 7
+    }
+}

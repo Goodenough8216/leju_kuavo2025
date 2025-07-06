@@ -1,0 +1,53 @@
+<launch>
+    <arg name="send_srv" default="1"/>
+    <arg name="use_joystick" default="false"/>
+    <arg name="visualize" default="false"/>
+    <arg name="noitom_server_ip" default=""/>
+    <arg name="ee_type" default="qiangnao"/>
+    <arg name="robot_version" default="4"/> <!-- the version of the robot -->
+    <arg name="control_hand_side" default="0"/> <!-- 0: left, 1: right, 2: both -->
+    <arg name="ik_type_idx" default="0"/> <!-- 0 corresponds to nonlinear optimization ik 1 corresponds to differential ik -->
+    <arg name="predict_gesture" default="false"/>
+    <arg name="eef_z_bias" default="0.0"/> <!-- bias added to the z-coordinate of the end-effector -->
+    <arg name="model_path" default="models/biped_gen4.0/urdf/biped_v3_arm.urdf"/>
+    <!-- <arg name="model_path" default="models/biped_s43/urdf/biped_s43_arm.urdf"/> -->
+    <arg name="record_bag" default="true"/>
+    <arg name="run_quest3_monitor" default="1" />
+    <arg name="use_cxx" default="0" />
+    <arg name="ip_address" default="192.168.3.17" /> <!-- ip address of quest3 -->
+    <arg name="control_finger_type" default="0" /> <!-- 0: control all fingers by upper-gripper, 1: control thumb and index fingers by upper-gripper, control other fingers by lower-gripper  -->
+
+    <param name="eef_z_bias" value="$(arg eef_z_bias)"/>
+    <param name="model_path" value="$(arg model_path)"/>
+    <param name="control_hand_side" value="$(arg control_hand_side)"/>
+
+
+    <group if="$(arg use_cxx)">
+        <node name="arms_ik_node" pkg="motion_capture_ik" type="arms_ik_node" output="screen"/>
+    </group>
+    <group unless="$(arg use_cxx)">
+        <node name="ik_ros_uni" pkg="motion_capture_ik" type="ik_ros_uni.py" output="screen" 
+        args="--version=$(arg robot_version) --ctrl_arm_idx=$(arg control_hand_side) --ik_type_idx=$(arg ik_type_idx) --send_srv=$(arg send_srv) --control_finger_type=$(arg control_finger_type) --predict_gesture=$(arg predict_gesture)"/>
+    </group>
+    <group if="$(arg record_bag)">   
+        <node name="topic_logger" pkg="motion_capture_ik" type="topic_logger" output="screen" args="--all --output-prefix motion_capture_ik --size 1000"/>
+    </group>
+    <!-- visualize the robot in rviz -->
+    <group if="$(arg visualize)">    
+        <node name="visulize_traj_node" pkg="motion_capture_ik" type="visulize_traj.py" output="screen"  args="--ee_type $(arg ee_type)"/>
+        <arg name="model" />
+        <param name="robot_description" textfile="$(find biped_s40_hand)/urdf/biped_s40_hand.urdf" />
+        <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" /> -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find motion_capture_ik)/rviz/mc_robot_state.rviz" />    
+    </group>
+    <group if="$(arg use_joystick)">
+        <node name="quest_joystick_controller" pkg="dynamic_biped" type="quest_joystick_controller.py" output="screen"/>
+    </group>
+    <!-- noitom_hi5_hand_udp_python -->
+    <group if="$(arg run_quest3_monitor)">
+        <node name="quest3_node" pkg="motion_capture_ik" type="quest3_node.py" output="screen" args="--ee_type $(arg ee_type) --send_srv $(arg send_srv)"></node>
+        <node pkg="noitom_hi5_hand_udp_python" type="monitor_quest3.py" args="$(arg ip_address)" name="monitor_quest3" output="screen">
+        </node>
+    </group>
+</launch>

@@ -1,0 +1,14 @@
+{
+    "record_topics": [
+      "/kuavo_arm_traj",
+      "/control_robot_hand_position",
+      "/robot_head_motion_data",
+      "/camera/depth/image_rect_raw",
+      "/camera/depth/camera_info",
+      "/camera/depth/color/points",
+      "/camera/color/image_raw",
+      "/camera/color/camera_info",
+      "/camera/aligned_depth_to_color/image_raw",
+      "/camera/aligned_depth_to_color/camera_info"
+    ]
+}

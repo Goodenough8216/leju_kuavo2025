@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="3"
+      main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <RetryUntilSuccessful num_attempts="5">
+        <CheckStatusOK/>
+      </RetryUntilSuccessful>
+      <Fallback>
+        <CloseToStart/>
+        <NavToStart/>
+      </Fallback>
+      <Sequence>
+        <CheckBoxGrasped/>
+        <RetryUntilSuccessful num_attempts="5">
+          <Fallback>
+            <BoxTagOK box_pose="{box_pose}"/>
+            <MoveAround/>
+          </Fallback>
+        </RetryUntilSuccessful>
+        <AdjustRobPoseIfFar pose="{box_pose}"
+                            pose_type="0"/>
+        <RetryUntilSuccessful num_attempts="3">
+          <Fallback>
+            <CheckBoxGrasped/>
+            <GraspBox box_pose="{box_pose}"/>
+          </Fallback>
+        </RetryUntilSuccessful>
+      </Sequence>
+      <Fallback>
+        <CloseToTarget/>
+        <NavToTarget/>
+      </Fallback>
+      <Sequence>
+        <RetryUntilSuccessful num_attempts="5">
+          <Fallback>
+            <TargetTagOK target_pose="{target_pose}"/>
+            <MoveAround/>
+          </Fallback>
+        </RetryUntilSuccessful>
+        <AdjustRobPoseIfFar pose="{target_pose}"
+                            pose_type="1"/>
+        <PutBox/>
+      </Sequence>
+      <NavToStart/>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="AdjustRobPoseIfFar"
+            editable="true">
+      <input_port name="pose"/>
+      <input_port name="pose_type">int</input_port>
+    </Action>
+    <Condition ID="BoxTagOK"
+               editable="true">
+      <output_port name="box_pose"/>
+    </Condition>
+    <Condition ID="CheckBoxGrasped"
+               editable="true"/>
+    <Condition ID="CheckStatusOK"
+               editable="true"/>
+    <Condition ID="CloseToStart"
+               editable="true"/>
+    <Condition ID="CloseToTarget"
+               editable="true"/>
+    <Action ID="GraspBox"
+            editable="true">
+      <input_port name="box_pose"/>
+    </Action>
+    <Action ID="MoveAround"
+            editable="true"/>
+    <Action ID="NavToStart"
+            editable="true"/>
+    <Action ID="NavToTarget"
+            editable="true"/>
+    <Action ID="PutBox"
+            editable="true"/>
+    <Condition ID="TargetTagOK"
+               editable="true">
+      <output_port name="target_pose"/>
+    </Condition>
+  </TreeNodesModel>
+
+</root>

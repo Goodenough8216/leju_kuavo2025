@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<launch>
+    <arg name="rviz"               default="false" />
+    <arg name="description_name"   default="humanoid_description"/>
+    <arg name="robot_version"      default="$(optenv ROBOT_VERSION 40)"/>
+    <param name="robot_version"    value="$(arg robot_version)"/>
+  
+    <!-- <arg name="urdfFile"           default="$(find biped_s3)/urdf/biped_s3_with_v3_arm.urdf"/> -->
+    <arg name="urdfFile"           default="$(find kuavo_assets)/models/biped_s$(arg robot_version)/urdf/biped_s$(arg robot_version).urdf"/>
+  
+   <!-- params -->
+    <param name="urdfFile"         value="$(arg urdfFile)" />
+    <param name="taskFile"         value="$(find humanoid_controllers)/config/kuavo_v$(arg robot_version)/mpc/task.info"/>
+    <param name="referenceFile"    value="$(find humanoid_controllers)/config/kuavo_v$(arg robot_version)/command/reference.info"/>
+    <param name="dynamicQrFile"    value="$(find humanoid_controllers)/config/kuavo_v$(arg robot_version)/mpc/dynamic_qr.info"/>
+    <param name="gaitCommandFile"  value="$(find humanoid_controllers)/config/kuavo_v$(arg robot_version)/command/gait.info"/>
+    
+    <arg name="kuavoConfigFile"           default="$(find kuavo_assets)/config/kuavo_v$(arg robot_version)/kuavo.json"/>
+    <param name="kuavo_configuration" textfile="$(arg kuavoConfigFile)"/>
+
+    <param name="modelPath"        value="$(find kuavo_assets)/models" />
+    <!-- rviz -->
+    <!-- <group if="$(arg rviz)"> -->
+      <param name="$(arg description_name)" textfile="$(arg urdfFile)"/>
+      <arg name="rvizconfig" default="$(find humanoid_interface_ros)/rviz/humanoid.rviz" />
+      <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(arg rvizconfig)" output="screen" />
+    <!-- </group> -->
+
+</launch>

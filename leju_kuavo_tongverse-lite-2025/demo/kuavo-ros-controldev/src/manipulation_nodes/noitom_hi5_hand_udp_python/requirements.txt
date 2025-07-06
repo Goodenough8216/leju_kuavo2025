@@ -1,0 +1,13 @@
+beautifulsoup4==4.12.3
+distro==1.9.0
+docutils==0.20.1
+google==3.0.0
+numpy==1.24.4
+protobuf==5.27.2
+pyparsing==3.1.2
+python-dateutil==2.9.0.post0
+PyYAML==6.0.1
+six==1.16.0
+soupsieve==2.5
+numpy-quaternion
+scipy==1.10.1

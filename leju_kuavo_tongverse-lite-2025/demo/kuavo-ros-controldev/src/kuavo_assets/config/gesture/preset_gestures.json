@@ -1,0 +1,477 @@
+[
+    {
+        "gesture_name": "cylindrical-grip",
+        "alias": ["cylindrical-grip", "five-finger-grab"],
+        "description": "Used for grasping large cylindrical objects or softer items.",
+        "action_sequences": [
+          {
+            "duration_ms": 700,
+            "positions": [5, 95, 4, 5, 5, 5],
+            "speeds": [100, 0, 100, 100, 100, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [45, 95, 45, 55, 55, 45],
+            "speeds": [100, 0, 100, 100, 100, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "finger-pointing-opposed",
+        "alias": ["finger-pointing-opposed", "number_1"],
+        "description": "Used for pressing buttons, clicking keyboards, mice, and indicating directions. This gesture can also be used to indicate the number '1'.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [85, 5, 5, 95, 95, 95],
+            "speeds": [0, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [85, 5, 5, 95, 95, 95],
+            "speeds": [0, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "finger-pointing-unopposed",
+        "alias": ["finger-pointing-unopposed", "number_8"],
+        "description": "Press the button switch with the hand to display the number '8'.",
+        "action_sequences": [
+            {
+                "duration_ms": 500,
+                "positions": [5, 5, 5, 95, 95, 95],
+                "speeds": [0, 0, 100, 0, 0, 0],
+                "forces": [0, 0, 0, 0, 0, 0]
+            },
+            {
+                "duration_ms": 500,
+                "positions": [5, 5, 5, 95, 95, 95],
+                "speeds": [0, 0, 100, 0, 0, 0],
+                "forces": [85,5,50,95,95,95]
+            }
+        ]
+    },
+    {
+        "gesture_name": "fist",
+        "alias": ["fist"],
+        "description":"Holding various objects of different sizes and shapes, such as a water cup, tennis ball, racket, or apple.",
+        "action_sequences": [
+            {
+                "duration_ms": 1000,
+                "positions": [5, 95, 5, 5, 5, 5],
+                "speeds": [70, 0, 100, 100, 100, 100],
+                "forces": [0, 0, 0, 0, 0, 0]
+            },
+            {
+                "duration_ms": 400,
+                "positions": [5, 95, 5, 5, 5, 5],
+                "speeds": [0, 0, 0, 0, 0, 0],
+                "forces": [0, 0, 0, 0, 0, 0]
+            },
+            {
+                "duration_ms": 800,
+                "positions": [85,95,100,100,100,100],
+                "speeds": [0, 0, 0, 0, 0, 0],
+                "forces": [0, 0, 0, 0, 0, 0]
+            }
+        ]
+    },
+    {
+        "gesture_name": "five-finger-pinch",
+        "alias": ["five-finger-pinch"],
+        "description": "Used for gripping objects.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [95, 5, 5, 95, 95, 95],
+            "speeds": [100, 0, 100, 100, 100, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [95, 5, 55, 95, 95, 95],
+            "speeds": [100, 0, 100, 100, 100, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "flick-index-finger",
+        "alias": ["flick-index-finger"],
+        "description": "Uses the motor and torsion spring to flick the index finger outward.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 90, 5, 5, 5, 5],
+            "speeds": [80, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [85, 90, 95, 5, 5, 5],
+            "speeds": [80, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "flick-middle-finger",
+        "alias": ["flick-middle-finger"],
+        "description": "Uses the motor and torsion spring to flick the middle finger outward.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 100, 6, 5, 5, 5],
+            "speeds": [100, 0, 0, 100, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [85, 100, 5, 95, 5, 5],
+            "speeds": [100, 0, 0, 100, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "four-finger-straight",
+        "alias": ["four-finger-straight"],
+        "description": "Used for picking up bowls or large-diameter cylindrical objects without them touching the palm.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 95, 5, 5, 5, 95],
+            "speeds": [100, 0, 100, 100, 100, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [60, 95, 95, 95, 95, 95],
+            "speeds": [100, 0, 100, 100, 100, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "inward-thumb",
+        "alias": ["inward-thumb", "number_4"],
+        "description": "Used for holding bowls, plates, etc., and can also represent the number '4'.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [4, 95, 5, 5, 5, 5],
+            "speeds": [100, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [95, 95, 5, 5, 5, 5],
+            "speeds": [100, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "mouse-control",
+        "alias": ["mouse-control"],
+        "description": "The user controls the mouse.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [35, 20, 15, 15, 15, 15],
+            "speeds": [0, 0, 50, 0, -50, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [35, 20, 15, 15, 15, 40],
+            "speeds": [0, 0, 50, 0, -50, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "palm-open",
+        "alias": ["palm-open","number_5"],
+        "description": "Used for flatly supporting objects and representing the number '5' gesture.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 5, 5, 5, 5],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 5, 5, 5, 5],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "pen-grip1",
+        "alias": ["pen-grip1"],
+        "description": "Used for holding slender objects, such as pens, pencils, or brushes for writing.",
+        "action_sequences": [
+          {
+            "duration_ms": 700,
+            "positions": [5, 5, 5, 100, 100, 5],
+            "speeds": [0, 0, 100, 0, 0, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 40, 100, 100, 40],
+            "speeds": [0, 0, 100, 0, 0, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "pen-grip2",
+        "alias": ["pen-grip2"],
+        "description": "Used for holding slender, elongated objects, such as pens, pencils, or brushes for writing.",
+        "action_sequences": [
+          {
+            "duration_ms": 700,
+            "positions": [5, 5, 100, 5, 5, 100],
+            "speeds": [0, 0, 0, 100, 100, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 100, 100, 100, 100],
+            "speeds": [0, 0, 0, 100, 100, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "pen-grip3",
+        "alias": ["pen-grip3", "two-finger-side-pinch"],
+        "description": "Uses the side of the index finger in coordination with the thumb to pinch and hold objects.",
+        "action_sequences": [
+          {
+            "duration_ms": 700,
+            "positions": [5, 15, 65, 95, 95, 95],
+            "speeds": [100, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [100, 15, 65, 95, 95, 95],
+            "speeds": [100, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "precision-pinch-opposed",
+        "alias": ["precision-pinch-opposed"],
+        "description": "Used for picking up small-sized and lightweight objects, such as coins, cards, keys, glue sticks, peanuts, and grapes.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 90, 5, 95, 95, 95],
+            "speeds": [100, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [60, 90, 60, 95, 95, 95],
+            "speeds": [100, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "precision-pinch-unopposed",
+        "alias": ["precision-pinch-unopposed", "ok","number_3"],
+        "description": "Used for pinching small objects in size and weight, or to represent 'OK'.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 90, 4, 5, 5, 5],
+            "speeds": [100, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [60, 90, 60, 5, 5, 5],
+            "speeds": [100, 0, 100, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "rock-and-roll",
+        "alias": ["rock-and-roll"],
+        "description": "The user showcases their personality.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [50, 50, 5, 95, 95, 5],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [85, 75, 5, 95, 95, 5],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "shaka-sign",
+        "alias": ["shaka-sign", "number_6", "666"],
+        "description": "Represents the number six and is also used as internet slang 666.",
+        "action_sequences": [
+          {
+            "duration_ms": 600,
+            "positions": [5, 5, 4, 5, 5, 5],
+            "speeds": [0, 0, 100, 100, 100, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 95, 95, 95, 5],
+            "speeds": [0, 0, 100, 100, 100, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "side-pinch",
+        "alias": ["side-pinch"],
+        "description": "Used for receiving business cards, pinching objects, etc.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 95, 95, 95, 95],
+            "speeds": [100, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [100, 5, 95, 95, 95, 95],
+            "speeds": [100, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "thumbs-up",
+        "alias": ["thumbs-up"],
+        "description": "Used for lifting objects, such as handbags, bags, etc. Also expresses: Great! Give a thumbs up!",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 35, 35, 35, 35],
+            "speeds": [0, 0, 100, 100, 100, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 95, 95, 95, 95],
+            "speeds": [0, 0, 100, 100, 100, 100],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "tripod-pinch-opposed",
+        "alias": ["tripod-pinch-opposed", "number_7"],
+        "description": "Pinching objects, representing the gesture number '7'.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 100, 5, 5, 100, 100],
+            "speeds": [100, 0, 100, 100, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [60, 100, 60, 72, 100, 100],
+            "speeds": [100, 0, 100, 100, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "tripod-pinch-unpposed",
+        "alias": ["tripod-pinch-unpposed"],
+        "description": "Used for pinching medium-sized or flat objects, such as a phone, bottle cap, or glue stick.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [4, 100, 5, 5, 5, 5],
+            "speeds": [100, 0, 100, 100, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [60, 100, 60, 72, 5, 5],
+            "speeds": [100, 0, 100, 100, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "two-finger-spread-opposed",
+        "alias": ["two-finger-spread-opposed", "number_2", "victory"],
+        "description": "Used for holding slender objects, such as a cigarette.It can also represent a 'victory' sign or the number '2'.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [75, 75, 5, 5, 95, 95],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [95, 95, 5, 5, 95, 95],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+        "gesture_name": "two-finger-spread-unopposed",
+        "alias": ["two-finger-spread-unopposed", "hold-cigarette"],
+        "description": "Used for holding slender objects, such as a cigarette.",
+        "action_sequences": [
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 5, 5, 95, 95],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          },
+          {
+            "duration_ms": 500,
+            "positions": [5, 5, 5, 5, 95, 95],
+            "speeds": [0, 0, 0, 0, 0, 0],
+            "forces": [0, 0, 0, 0, 0, 0]
+          }
+        ]
+    },
+    {
+      "gesture_name": "empty",
+      "alias": ["none", "empty"],
+      "description": "empty gesture.",
+      "action_sequences": [
+        {
+          "duration_ms": 600,
+          "positions": [0, 0, 0, 0, 0, 0],
+          "speeds": [0, 0, 0, 0, 0, 0],
+          "forces": [0, 0, 0, 0, 0, 0]
+        }
+      ]
+  }
+]

@@ -1,0 +1,57 @@
+<launch>
+  <arg name="use_real_camera_data" default="false"/>
+  <arg name="camera_name" default="camera"/>
+  <arg name="use_nvblox" default="false"/>
+  <arg name="use_tf" default="false"/>
+  
+  <!-- Set the camera name parameter for metadata transport -->
+  <param name="Sim_metadata" value="$(arg camera_name)"/>
+  
+  <!-- 当use_real_camera_data为false时启动模拟节点 -->
+  <group unless="$(arg use_real_camera_data)">
+    <node name="camera_metadata_sim_pub" pkg="realsense_sim_metadata" 
+          type="camera_metadata_sim_pub" output="screen">
+      <param name="camera_name" value="$(arg camera_name)"/>
+    </node>
+  </group>
+
+  <!-- 当use_tf为true时发布D435相机的静态TF树 -->
+  <group if="$(arg use_tf)">
+    <!-- 基础相机链接 -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_base_link"
+          args="0 0 0 0 0 0 camera_base_link $(arg camera_name)_bottom_screw_frame"/>
+
+    <!-- 相机主体链接 -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_link"
+          args="0 0.0175 0.0125 0 0 0 $(arg camera_name)_bottom_screw_frame $(arg camera_name)_link"/>
+
+    <!-- 深度相机链接 - 直接从camera_link -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_depth_frame"
+          args="0 0 0 0 0 0 $(arg camera_name)_link $(arg camera_name)_depth_frame"/>
+    
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_depth_optical_frame"
+          args="0 0 0 -1.5708 0 -1.5708 $(arg camera_name)_depth_frame $(arg camera_name)_depth_optical_frame"/>
+
+    <!-- 彩色相机链接 - 直接从camera_link -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_color_frame"
+          args="0 0.015 0 0 0 0 $(arg camera_name)_link $(arg camera_name)_color_frame"/>
+    
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_color_optical_frame"
+          args="0 0 0 -1.5708 0 -1.5708 $(arg camera_name)_color_frame $(arg camera_name)_color_optical_frame"/>
+
+    <!-- 左红外相机链接 - 直接从camera_link -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_infra1_frame"
+          args="0 0 0 0 0 0 $(arg camera_name)_link $(arg camera_name)_infra1_frame"/>
+    
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_infra1_optical_frame"
+          args="0 0 0 -1.5708 0 -1.5708 $(arg camera_name)_infra1_frame $(arg camera_name)_infra1_optical_frame"/>
+
+    <!-- 右红外相机链接 - 直接从camera_link -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_infra2_frame"
+          args="0 -0.050 0 0 0 0 $(arg camera_name)_link $(arg camera_name)_infra2_frame"/>
+    
+    <node pkg="tf2_ros" type="static_transform_publisher" name="$(arg camera_name)_infra2_optical_frame"
+          args="0 0 0 -1.5708 0 -1.5708 $(arg camera_name)_infra2_frame $(arg camera_name)_infra2_optical_frame"/>
+  </group>
+
+</launch>

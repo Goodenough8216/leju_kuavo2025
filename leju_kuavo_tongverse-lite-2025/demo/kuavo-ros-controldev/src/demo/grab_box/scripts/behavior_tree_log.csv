@@ -1,0 +1,10 @@
+NodeName,ExecutionTime_ms
+"MoveToGraspCMD",5033.44
+"Grasp",4033.3
+"GraspBcakCMD",4262.76
+"MoveToPutSingle(Turn)",5805.64
+"MoveToPutCMD",6698.08
+"Put",3763.98
+"PutBackCMD",5689.53
+"ArmHome",31.9051
+"Total",36090.7

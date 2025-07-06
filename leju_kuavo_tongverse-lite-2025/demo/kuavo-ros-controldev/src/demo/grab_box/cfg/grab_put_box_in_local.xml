@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="3"
+      main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <SetBlackboard value="-0.3,0,0"
+                     output_key="pre_grab_box_offset"/>
+      <CheckStatusOK/>
+      <!-- <SequenceStar>
+        <Sequence>
+          <Echo echo_input="grasp"/>
+          <RetryUntilSuccessful num_attempts="2">
+            <GraspBox box_pos="0.3,0,0.9"
+                      box_quat="0.0,0,0,1"
+                      box_size="0.3,0.3,0.3"
+                      box_offset="-0.12,0.0,0.16"
+                      grasp_type="0"/>
+          </RetryUntilSuccessful>
+          <MoveToDestination planed_trajectory="0,0,0,0"
+                             move_type="2"/>
+        </Sequence>
+      </SequenceStar> -->
+      <SequenceStar>
+        <Sequence>
+          <Echo echo_input="put"/>
+          <GraspBox box_pos="0.6,0.0,1.8"
+                    box_quat="0.0,0,0,1"
+                    box_size="0.3,0.3,0.3"
+                    box_offset="-0.13,0.0,-0.55"
+                    grasp_type="1"/>
+          <Parallel failure_threshold="1"
+                    success_threshold="2">
+            <MoveToDestination planed_trajectory="0,0,0,0"
+                               move_type="2"/>
+            <!-- <ArmMoveToHomePose/> -->
+          </Parallel>
+        </Sequence>
+      </SequenceStar>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="ArmMoveToHomePose"
+            editable="true"/>
+    <Condition ID="CheckStatusOK"
+               editable="true"/>
+    <Action ID="Echo"
+            editable="true">
+      <input_port name="echo_input"/>
+    </Action>
+    <Action ID="GraspBox"
+            editable="true">
+      <input_port name="box_pos"/>
+      <input_port name="box_quat">xyzw</input_port>
+      <input_port name="box_size"/>
+      <input_port name="grasp_type">0:grasp, 1:put</input_port>
+    </Action>
+    <Action ID="MoveToDestination"
+            editable="true">
+      <input_port name="planed_trajectory"/>
+      <input_port name="move_type"
+                  default="0">int</input_port>
+    </Action>
+  </TreeNodesModel>
+
+</root>

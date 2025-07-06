@@ -1,0 +1,55 @@
+{
+    "preset_action_path":{
+        "right_hand": {
+            "hand_up": "actions/hand_up_tag_right.tact",
+            "hand_down": "actions/hand_down_tag_right_lower.tact"
+        },
+        "left_hand": {
+            "hand_up": "actions/hand_up_tag_left.tact",
+            "hand_down": "actions/hand_down_tag_left_lower.tact"
+        }
+    },
+    "preset_target": {
+        "use": false,
+        "point": {
+            "1": [0.37312414, 0.23108104,  0.13475034],
+            "2": [0.37312414, -0.23108104,  0.13475034]
+        }
+    },
+    "target_offsets": {
+        "right_hand": {
+            "x": 0,
+            "y": 0.04,
+            "z": 0.02
+        },
+        "left_hand": {
+            "x": 0,
+            "y": 0.02,
+            "z": 0.02
+        }
+    },
+    "tag_id": 1,
+    "target_pose_rpy": null,
+    "interpolate_config": {
+        "bezier_interpolate_point_num": 50,
+        "bezier_interpolate_gap_time": 5
+    },
+    "fix_trajectory_paths": {
+        "left": "actions/left_hand_lower.tact",
+        "right": "actions/right_hand_lower.tact"
+    },
+    "put_joint_pose": {
+        "right_hand": [20,0,0,-30,0,0,0,-50,10,0,-30,0,-15,30],
+        "left_hand": [-50,-10,0,-30,0,-15,-30, 20,0,0,-30,0,0,0]
+    },
+    "boundary": {
+        "right_hand": {
+            "x": [0.36, 0.42],
+            "y": [-1, 1]
+        },
+        "left_hand": {
+            "x": [0, 0.42],
+            "y": [-1, 1]
+        }
+    }
+}

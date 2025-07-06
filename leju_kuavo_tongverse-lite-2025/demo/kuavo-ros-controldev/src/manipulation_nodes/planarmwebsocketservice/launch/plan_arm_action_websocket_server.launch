@@ -1,0 +1,7 @@
+<launch>
+  <arg name="robot_type" default="kuavo" />
+  <env name="PYTHONPATH" value="$(env PYTHONPATH):$(find planarmwebsocketservice)/scripts" />
+  <node pkg="planarmwebsocketservice" type="plan_arm_action_websocket_server.py" name="plan_arm_action_websocket_server" output="screen" args="--robot_type=$(arg robot_type)">
+    <env name="PYTHONPATH" value="$(env PYTHONPATH):$(find planarmwebsocketservice)/scripts" />
+  </node>
+</launch>

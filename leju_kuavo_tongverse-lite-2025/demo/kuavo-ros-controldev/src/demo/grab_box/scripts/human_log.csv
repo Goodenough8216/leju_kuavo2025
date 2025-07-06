@@ -1,0 +1,10 @@
+NodeName,ExecutionTime_ms
+"MoveToGraspCMD",2000
+"Grasp",2000
+"GraspBcakCMD",1500
+"MoveToPutSingle(Turn)",2000
+"MoveToPutCMD",3000
+"Put",2000
+"PutBackCMD",2500
+"ArmHome",30
+"Total",15000

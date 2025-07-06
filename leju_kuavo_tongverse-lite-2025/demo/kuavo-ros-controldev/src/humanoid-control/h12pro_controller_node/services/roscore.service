@@ -1,0 +1,15 @@
+[Unit]
+Description=ROSCore Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "source /opt/ros/noetic/setup.bash; roscore"
+ExecStop=/bin/kill -SIGINT $MAINPID
+Restart=on-failure
+RestartSec=3s
+User=root
+
+[Install]
+WantedBy=multi-user.target
+

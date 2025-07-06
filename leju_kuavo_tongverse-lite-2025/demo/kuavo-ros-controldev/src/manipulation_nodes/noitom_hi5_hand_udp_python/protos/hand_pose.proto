@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+message LejuHandPoseEvent {
+  int64 timestamp = 1; // The timestamp represented as an int64 value
+
+  message Pose {
+    message Position {
+      float x = 1;
+      float y = 2;
+      float z = 3;
+    }
+
+    message Quaternion {
+      float x = 1;
+      float y = 2;
+      float z = 3;
+      float w = 4;
+    }
+
+    Position position = 1;
+    Quaternion quaternion = 2;
+  }
+
+  message Joystick {
+    float x = 1; // X-axis value of the joystick
+    float y = 2; // Y-axis value of the joystick
+    float trigger = 3; // Trigger value
+    float grip = 4; // Grip value
+
+    bool firstButtonPressed = 5; // First button press state
+    bool secondButtonPressed = 6; // Second button press state
+
+    bool firstButtonTouched = 7; // First button touch state
+    bool secondButtonTouched = 8; // Second button touch state
+  }
+
+  repeated Pose poses = 2; // Repeated Pose array
+  bool IsDataHighConfidence = 3; // Indicates if data is of high confidence
+  bool IsHandTracking = 4; // Indicates hand tracking
+
+  Joystick left_joystick = 5; // Data for the left joystick
+  Joystick right_joystick = 6; // Data for the right joystick
+}

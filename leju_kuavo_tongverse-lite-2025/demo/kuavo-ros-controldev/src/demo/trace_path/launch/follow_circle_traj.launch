@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<launch>
+    <arg name="rviz"               default="false" />
+    <arg name="kRadius" default="1.0"/>
+    <arg name="max_linear_vel" default="0.20"/>
+    <arg name="max_angular_vel" default="M_PI/8"/>
+
+    <group if="$(arg rviz)">
+      <arg name="rvizconfig" default="$(find trace_path)/rviz/trace_path_demo.rviz" />
+      <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rvizconfig)" output="screen" />
+    </group>
+
+    <node pkg="trace_path" type="follow_circle_traj" name="follow_circle_traj_demo" output="screen">
+      <param name="kRadius"      value="$(arg kRadius)"/>
+      <param name="max_linear_vel"      value="$(arg max_linear_vel)"/>
+      <param name="max_angular_vel"      value="$(arg max_angular_vel)"/>
+    </node>
+</launch>

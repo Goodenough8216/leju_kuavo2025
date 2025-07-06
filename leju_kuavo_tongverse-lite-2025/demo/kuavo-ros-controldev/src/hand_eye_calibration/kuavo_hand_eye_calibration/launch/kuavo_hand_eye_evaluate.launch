@@ -1,0 +1,54 @@
+<launch>
+    <arg name="aruco_marker_id" default="777" />                                      <!-- TODO: Your marker id (Original ArUco) -->
+    <arg name="aruco_marker_size" default="0.1" />                                    <!-- TODO: Your marker side length in m -->
+    <arg name="aruco_camera_frame" default="camera_color_optical_frame" />            <!-- TODO: Your rgb camera optical frame -->
+    <arg name="aruco_ref_frame" default="camera_link" />                              <!-- TODO: Frame in which the marker pose will be refered, empty means (parent frame of optical camera frame) -->
+    <arg name="aruco_camera_image_topic" default="/camera/color/image_raw" />         <!-- TODO: Your rgb image raw topic -->
+    <arg name="aruco_camera_info_topic" default="/camera/color/camera_info" />        <!-- TODO: Your rgb camera info topic -->
+    <arg name="aruco_marker_frame" default="aruco_marker_frame" />                    <!-- Set marker frame name -->
+    <arg name="handeye_cali_robot_base_frame" default="base_link" />                  <!-- TODO: Your robot base frame -->
+    <arg name="handeye_cali_robot_effector_frame" default="zarm_r7_end_effector" />   <!-- TODO: Your end effector frame -->
+    <arg name="calibration_file" value="~/.ros/easy_handeye/humanoid_eye_on_base.yaml" />
+
+    <node pkg="kuavo_hand_eye_calibration" type="publish_calibration_tf.py" name="publish_calibration_tf" output="screen"/>
+
+    <node pkg="kuavo_hand_eye_calibration" type="evaluate.py" name="evaluate" output="screen"
+        args="--calibration_file $(arg calibration_file)
+              --robot_base_frame $(arg handeye_cali_robot_base_frame)
+              --robot_effector_frame $(arg handeye_cali_robot_effector_frame)
+              --aruco_marker_frame $(arg aruco_marker_frame)"
+    />
+
+    <node pkg="tf" type="static_transform_publisher" name="dummy_link_to_base_link" 
+          args="0 0 0 0 0 0 1 base_link dummy_link 100" />
+    
+
+    <arg name="use_remote_camera" default="true" />
+    
+    
+    <group unless="$(arg use_remote_camera)">
+        <include file="$(find realsense2_camera)/launch/rs_camera.launch"> 
+          <arg name="color_width" value="1280" />
+          <arg name="color_height" value="720" />
+          <arg name="color_fps" value="30" />
+        </include>
+    </group>
+
+    <node pkg="aruco_ros" type="single" name="aruco_single">
+        <remap from="/camera_info" to="$(arg aruco_camera_info_topic)" />
+        <remap from="/image" to="$(arg aruco_camera_image_topic)" />
+        <param name="image_is_rectified" value="True" />
+        <param name="marker_size" value="$(arg aruco_marker_size)" />
+        <param name="marker_id" value="$(arg aruco_marker_id)" />
+        <param name="reference_frame" value="$(arg aruco_ref_frame)" />
+        <param name="camera_frame" value="$(arg aruco_camera_frame)" />
+        <param name="marker_frame" value="$(arg aruco_marker_frame)" />
+    </node>
+                        
+    <arg name="rviz_config_file" default="$(find easy_handeye)/launch/rviz_easy_handeye.config" doc="the path to the rviz config file to be opened" />
+    <node name="easy_handeye_rviz" pkg="rviz" type="rviz" respawn="true"
+            args="-d $(arg rviz_config_file)" output="screen" />
+
+    <node pkg="kuavo_arm_joint_state_publisher_gui" type="kuavo_arm_joint_state_publisher_gui" name="kuavo_arm_joint_state_publisher_gui" output="log" />
+    
+</launch>

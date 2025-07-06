@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>humanoid_controllers</name>
+    <version>0.0.0</version>
+    <description>The humanoid_controllers packages.</description>
+    <maintainer email="liaoqiayuan@gmail.com">Qiayuan Liao</maintainer>
+    <license>BSD</license>
+    <author email="liaoqiayuan@gmail.com">Qiayuan Liao</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>nodelet</build_depend>
+
+    <build_depend>cmake_clang_tools</build_depend>
+    <depend>roscpp</depend>
+    <depend>humanoid_common</depend>
+    <depend>humanoid_interface</depend>
+    <depend>humanoid_estimation</depend>
+    <depend>humanoid_interface_ros</depend>
+    <depend>humanoid_interface_drake</depend>
+    <depend>kuavo_estimation</depend>
+    <depend>kuavo_monitor</depend>
+    <depend>biped_s40</depend>
+    <depend>biped_s42</depend>
+    <depend>kuavo_msgs</depend>
+    <!-- <depend>mujoco_sim</depend> -->
+    <depend>mujoco_cpp</depend>
+    <depend>humanoid_wbc</depend>
+    <depend>controller_interface</depend>
+    <depend>h12pro_controller_node</depend>
+    <depend>motion_capture_ik</depend>
+    <depend>hardware_node</depend>
+    <depend>kuavo_assets</depend>
+    <depend>ocs2_self_collision_visualization</depend>
+    <!-- <depend>gazebo_sim</depend> -->
+    <!-- <depend>realsense_ros_gazebo</depend> -->
+    <depend>realsense_sim_metadata</depend>
+    <!-- <depend>ocs2_biped_robot_ros</depend> -->
+
+    <depend>angles</depend>
+    <exec_depend>nodelet</exec_depend>
+    <exec_depend>controller_manager</exec_depend>
+
+    <export>
+        <controller_interface plugin="${prefix}/humanoid_controllers_plugins.xml"/>
+        <nodelet plugin="${prefix}/plugins/nodelet_controller_plugin.xml" />
+        <nodelet plugin="${prefix}/plugins/nodelet_player_plugin.xml" />
+    </export>
+</package>

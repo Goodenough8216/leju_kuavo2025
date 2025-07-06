@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>kuavo_assets</name>
+  <version>10.3.0</version>
+  <description>This package contains all the URDF files need for kuavo.</description>
+  
+  <maintainer email="hzc@lejurobot.com">Farbod Farshidian</maintainer>
+
+  <license>BSD-3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>cmake_clang_tools</build_depend>
+  <depend>biped_s42</depend>
+  <depend>biped_s40</depend>
+
+</package>

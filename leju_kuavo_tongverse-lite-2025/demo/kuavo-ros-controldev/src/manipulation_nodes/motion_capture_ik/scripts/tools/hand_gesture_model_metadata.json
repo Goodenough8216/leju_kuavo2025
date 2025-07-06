@@ -1,0 +1,17 @@
+{
+    "gesture_names": [
+        "cylindrical-grip",
+        "finger-pointing-opposed",
+        "fist",
+        "other",
+        "palm-open",
+        "precision-pinch-unopposed",
+        "rock-and-roll",
+        "shaka-sign",
+        "thumbs-up",
+        "tripod-pinch-unpposed",
+        "two-finger-spread-unopposed"
+    ],
+    "input_shape": 63,
+    "num_classes": 11
+}

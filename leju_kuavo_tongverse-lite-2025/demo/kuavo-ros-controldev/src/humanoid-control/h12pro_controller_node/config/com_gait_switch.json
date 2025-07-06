@@ -1,0 +1,10 @@
+{
+    "gait_control_interface": [
+        "start_marching",
+        "end_marching"
+    ],
+    "com_control_interface": [
+        "squatting",
+        "stand_up"
+    ]
+}

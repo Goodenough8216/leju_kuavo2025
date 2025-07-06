@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+
+<launch>
+  <node pkg="humanoid_interface_ros" type="humanoid_gait_switch_by_name" name="humanoid_gait_switch_by_name" output="screen">
+  </node>
+</launch>

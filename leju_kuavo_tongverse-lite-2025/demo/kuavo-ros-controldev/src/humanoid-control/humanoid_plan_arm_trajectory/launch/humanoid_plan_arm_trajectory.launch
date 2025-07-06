@@ -1,0 +1,23 @@
+<launch>
+    <!-- Load parameters from YAML file -->
+    <!-- Set joint_state_topic parameter -->
+    <param name="joint_state_topic" value="kuavo_arm_traj" />
+    <param name="joint_state_unit" value="deg" />
+    <arg name="use_nodelet" default="false" />
+
+    <node pkg="humanoid_plan_arm_trajectory" type="arm_trajectory_bezier_process.py" name="autostart_arm_trajectory_bezier_demo" output="screen" />
+
+    <group if="$(arg use_nodelet)">
+        <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen" />
+        <node pkg="nodelet" type="nodelet" name="humanoid_plan_arm_trajectory_nodelet" 
+              args="load humanoid_plan_arm_trajectory/HumanoidPlanArmTrajectoryNodelet nodelet_manager" 
+              output="screen" />
+    </group>
+    
+    <group unless="$(arg use_nodelet)">
+        <node name="humanoid_plan_arm_trajectory_node" 
+              pkg="humanoid_plan_arm_trajectory" 
+              type="humanoid_plan_arm_trajectory_node" 
+              output="screen" />
+    </group>
+</launch>

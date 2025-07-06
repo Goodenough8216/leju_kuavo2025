@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="3"
+      main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <SetBlackboard value="-0.35,0.0,0.0"
+                     output_key="pre_grab_box_offset"/>
+      <CheckStatusOK/>
+      <ReactiveSequence>
+        <BoxTagOK tag_id="1"
+                  box_pos="{box_pose}"
+                  box_quat="{box_quat}"/>
+        <ComputeTargetPose box_pos="{box_pose}"
+                           box_quat="{box_quat}"
+                           target_box_offset="{pre_grab_box_offset}"
+                           target_pose="{target_pose}"/>
+        <CmdPoseWorldMoveToDestination target_pose="{target_pose}"/>
+      </ReactiveSequence>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Condition ID="BoxTagOK"
+               editable="true">
+      <input_port name="tag_id"/>
+      <output_port name="box_pos"/>
+      <output_port name="box_quat"/>
+    </Condition>
+    <Condition ID="CheckStatusOK"
+               editable="true"/>
+    <Action ID="CmdPoseWorldMoveToDestination">
+      <input_port name="target_pose"/>
+    </Action>
+    <Condition ID="ComputeTargetPose"
+               editable="true">
+      <input_port name="box_pos"/>
+      <input_port name="box_quat"/>
+      <input_port name="target_box_offset"/>
+      <output_port name="target_pose"/>
+    </Condition>
+  </TreeNodesModel>
+
+</root>

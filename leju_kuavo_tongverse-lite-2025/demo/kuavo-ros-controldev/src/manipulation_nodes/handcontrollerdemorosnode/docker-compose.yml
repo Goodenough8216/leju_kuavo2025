@@ -1,0 +1,9 @@
+services:
+  handcontrollerdemorosnode:
+    image:  osrf/ros:noetic-desktop-full
+    container_name: handcontrollerdemorosnode
+    privileged: true
+    volumes:
+      - /home/rongman/workspace/handcontrollerdemorosnode:/catkin_ws/src/handcontrollerdemorosnode
+    network_mode: host
+    command: bash

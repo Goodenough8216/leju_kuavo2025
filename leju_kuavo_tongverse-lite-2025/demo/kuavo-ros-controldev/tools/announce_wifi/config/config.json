@@ -1,0 +1,12 @@
+{
+    "detection_wifi_connected_mins": 3, 
+    "interval_s": 2,
+    "play_retries": 5,
+    "robot_name": "placeholder@robot_name",
+    "connected_text": "WIFI 已连接, 连接的 WIFI 是: \"{wifi_name}\", I P 地址是: \"{ip_address}\"",
+    "disconnected_text": "未连接 WIFI, 开启 A P 热点模式, 热点名称是: \"{hotspot_name}\", I P 地址是: \"{ip_address}\"",
+    "hotspot_active_onboot_text": "A P 热点模式, 热点名称是: \"{hotspot_name}\", I P 地址是: \"{ip_address}\"",
+    "unspported_ap_text":"不支持 A P 热点模式, 请使用 USB 连接电脑显示器查看 I P 地址",
+    "ap_change_fail_text": "切换 A P 热点模式失败, 请使用 USB 连接电脑显示器查看 I P 地址",
+    "only_annouce_wifi": false
+}

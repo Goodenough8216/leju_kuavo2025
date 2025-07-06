@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<launch>
+  <include file="$(find humanoid_controllers)/launch/load_kuavo_mujoco_sim.launch">
+    <arg name="only_half_up_body" value="true"/>
+  </include>
+
+  <!-- <include file="$(find humanoid_plan_arm_trajectory)/launch/humanoid_plan_arm_trajectory.launch"/> -->
+
+</launch>   

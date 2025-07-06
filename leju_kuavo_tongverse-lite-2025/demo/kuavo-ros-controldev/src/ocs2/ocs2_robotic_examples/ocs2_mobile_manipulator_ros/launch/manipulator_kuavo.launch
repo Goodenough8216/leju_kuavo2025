@@ -1,0 +1,25 @@
+<launch>
+      <!-- Enable rviz visualization -->
+      <arg name="rviz"        default="true" />
+      <!-- Set nodes on debug mode -->
+      <arg name="debug"       default="false" />
+      <!-- mpc_type 1 for SQP and 0 for DDP  -->
+      <arg name="sqp_mpc"  default="1" />
+
+      <!-- The URDF model of the robot -->
+      <!-- <arg name="urdfFile"    value="$(find kuavo_assets)/models/biped_s42/urdf/biped_s42_l.urdf" /> -->
+      <arg name="urdfFile"    value="$(find kuavo_assets)/models/biped_s42/urdf/biped_s42.urdf" />
+      <!-- The task file for the mpc. -->
+      <arg name="taskFile"    value="$(find ocs2_mobile_manipulator)/config/kuavo/task.info" />
+      <!-- The library folder to generate CppAD codegen into -->
+      <arg name="libFolder"   value="$(find ocs2_mobile_manipulator)/auto_generated/kuavo" />
+      
+      <include file="$(find ocs2_mobile_manipulator_ros)/launch/include/mobile_manipulator.launch">
+            <arg name="rviz"        value="$(arg rviz)" />
+            <arg name="debug"       value="$(arg debug)" />
+            <arg name="sqp_mpc"     value="$(arg sqp_mpc)" />
+            <arg name="urdfFile"    value="$(arg urdfFile)" />
+            <arg name="taskFile"    value="$(arg taskFile)" />
+            <arg name="libFolder"   value="$(arg libFolder)" />
+      </include>
+</launch>
